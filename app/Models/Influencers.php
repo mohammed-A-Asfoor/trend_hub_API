@@ -16,6 +16,6 @@ class Influencers extends Model
 
     public function Gallaries()
     {
-        return $this->hasMany(Gallery::class);
+        return $this->hasMany(Gallery::class,'influencer_id','influencer_id');
     }
 }

@@ -47,10 +47,28 @@ class GalleryController extends Controller
      */
     public function filter($influnserid)
     {
-        dd($influnserid);
-        $galaries = Influencers::find(1)->Gallaries;
-        dd($galaries);
-        return $galaries;
+        try{
+            
+        $galaries = Influencers::find($influnserid)->Gallaries;
+        if($galaries != null){
+            return response()->json([
+                'Galeries' => $galaries,
+                'status' => 2
+            ]);
+        }else{
+            return response()->json([
+                'message' => 'No Data found',
+                'status' => 3
+            ]);
+        }
+        
+        }catch(Throwable $thr){
+            return response()->json([
+                'message' => 'Error '.$thr,
+                'status' => 3
+            ]);
+        }
+        
     }
 
     /**

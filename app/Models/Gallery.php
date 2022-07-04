@@ -13,8 +13,8 @@ class Gallery extends Model
     protected $fillable=['influencer_id','image','status'];
     protected $table = 'gallery';
 
-    public function Influencer()
+    public function influencer()
     {
-        return $this->belongsTo(Influencers::class);
+        return $this->belongsTo(Influencers::class,'influencer_id','influencer_id');
     }
 }

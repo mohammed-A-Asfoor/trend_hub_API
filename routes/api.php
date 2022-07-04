@@ -23,4 +23,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::apiResource('/influencers',InfluencersConrtoller::class);
 Route::apiResource('/gallery',GalleryController::class);
 Route::apiResource('/products',ProductController::class);
-Route::get('/gallery/influnser/{$influnserid}',[GalleryController::class,'filter']);
+Route::get('/gallery/influnser/{id}',[GalleryController::class,'filter']);

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\InflucnerResource;
 use App\Models\Influencers;
 use Illuminate\Http\Request;
+use Throwable;
 
 class InfluencersConrtoller extends Controller
 {
@@ -14,7 +16,18 @@ class InfluencersConrtoller extends Controller
      */
     public function index()
     {
-        return Influencers::all();
+        try{
+            $influencers = Influencers::with('Gallaries')->get();
+            if($influencers != null){
+                return response()->json([
+                    'influencers'=>$influencers,
+                    'ststus'=>2
+                ]);
+            }
+        }catch(Throwable $thr){
+            
+        }
+          
     }
 
     /**
@@ -31,12 +44,12 @@ class InfluencersConrtoller extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Influencers  $influcencer
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($influcencer)
     {
-        //
+        return new InflucnerResource($influcencer); 
     }
 
     /**

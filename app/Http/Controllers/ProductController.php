@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\product;
 use Illuminate\Http\Request;
+use Throwable;
 
 class ProductController extends Controller
 {
@@ -14,7 +15,26 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        try{
+            $products = product::all();
+            if($products != null){
+                return response()->json([
+                    'products'=> $products,
+                    'status'=>2
+                ]);
+            }else{
+                return response()->json([
+                    'msg'=> 'no data to be retirved',
+                    'status'=>3
+                ]); 
+            }
+        }catch(Throwable $thr){
+            return response()->json([
+                'msg'=> 'Error '.$thr,
+                'status'=>4
+            ]); 
+        }
+        
     }
 
     /**

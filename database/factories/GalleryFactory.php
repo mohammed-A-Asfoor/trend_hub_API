@@ -21,7 +21,6 @@ class GalleryFactory extends Factory
             'image'=>$this->faker->imageUrl(),
             'status'=>'active'
 
-
         ];
     }
 }

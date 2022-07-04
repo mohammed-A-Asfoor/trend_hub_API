@@ -13,4 +13,13 @@ class product extends Model
     protected $primaryKey = 'product_id ';
     protected $fillable=['sub_category_id','product_name','description','price','image','stock','status'];
     protected $table = 'gallery';
+
+    public function influencer(){
+        return $this->belongsTo(Influencers::class,'influencer_id','influencer_id');
+    }
+    public function gallery(){
+        return $this->belongsTo(Influencers::class,'influencer_id','influencer_id');
+    }
+    
+
 }
