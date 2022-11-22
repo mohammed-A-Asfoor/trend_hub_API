@@ -7,6 +7,7 @@ use App\Http\Requests\StoreGalleryRequest;
 use App\Http\Requests\UpdateGalleryRequest;
 use App\Http\Resources\GalleryCollection;
 use App\Models\Influencers;
+use Illuminate\Http\Request;
 use Throwable;
 
 class GalleryController extends Controller
@@ -41,15 +42,19 @@ class GalleryController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
-     * @param stirng $influnserid
+     * get the galaires belnging to one influncers 
+     *
+    * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function filter($influnserid)
+    public function filter(Request $request)
     {
+        //dd($request);
         try{
+           
+            $id= $request->id;
             
-        $galaries = Influencers::find($influnserid)->Gallaries;
+        $galaries = Influencers::find($id)->Gallaries;
         if($galaries != null){
             return response()->json([
                 'Galeries' => $galaries,

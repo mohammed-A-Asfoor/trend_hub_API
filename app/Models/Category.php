@@ -5,9 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Gallery extends Model
+class Category extends Model
 {
     use HasFactory;
+    protected $fillable=['icon','category_name','category_type'];
     /*
     since we are using an existing databsae, we need to
     1- disable timestamps whcih automaticly assume thet we have'
@@ -16,12 +17,11 @@ class Gallery extends Model
     3- specify the primary key 
     */
     public $timestamps = false;
-    protected $primaryKey = 'gallery_id';
-    protected $fillable=['influencer_id','image','status'];
-    protected $table = 'gallery';
+    protected $primaryKey = 'category_id';
+    protected $table = 'category';
 
-    public function influencer()
-    {
-        return $this->belongsTo(Influencers::class,'influencer_id','influencer_id');
+    public function Sub_categories(){
+        return $this->hasMany(Sub_Category::class,'category_id','category_id');
     }
+
 }

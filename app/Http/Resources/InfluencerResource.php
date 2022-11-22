@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class InflucnerResource extends JsonResource
+class InfluencerResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -14,10 +14,6 @@ class InflucnerResource extends JsonResource
      */
     public function toArray($request)
     {
-        return [
-            'id'=>$this->influencer_id,
-            'first_name'=>$this->first_name,
-            'galleries'=>$this->Gallaries()
-        ];
+        return parent::toArray($request);
     }
 }
